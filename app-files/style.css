@@ -596,7 +596,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   position: absolute;
   width: 300px;
   height: auto;
-  max-height: 200px;
+  max-height: 380px;
   top: 40px;
   left: 0;
   padding: 10px;
@@ -827,4 +827,18 @@ body.view-control-buttons .viewControlButton {
 }
 .viewControlButton-6 {
   margin-left: 105px;
+}
+
+/* Rich hotspot content: image and chart */
+
+.info-hotspot-media {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 3px;
+}
+
+.info-hotspot-chart {
+  display: block;
+  margin-top: 10px;
 }

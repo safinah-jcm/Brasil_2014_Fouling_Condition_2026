@@ -284,6 +284,70 @@
     return wrapper;
   }
 
+  function createFoulingChart(chartData) {
+    var ns = 'http://www.w3.org/2000/svg';
+    var keys = Object.keys(chartData);
+    var rowH = 26;
+    var labelW = 118;
+    var barMaxW = 100;
+    var svgW = 260;
+    var svgH = keys.length * rowH + 8;
+    var colors = ['#4db6ac', '#ff8a65', '#ef5350'];
+
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + svgW + ' ' + svgH);
+    svg.setAttribute('width', svgW);
+    svg.setAttribute('height', svgH);
+    svg.classList.add('info-hotspot-chart');
+
+    var maxVal = 0;
+    keys.forEach(function(k) { if (chartData[k] > maxVal) maxVal = chartData[k]; });
+
+    keys.forEach(function(key, i) {
+      var val = chartData[key];
+      var y = i * rowH + 4;
+      var barW = (val / maxVal) * barMaxW;
+
+      var label = document.createElementNS(ns, 'text');
+      label.setAttribute('x', 0);
+      label.setAttribute('y', y + 16);
+      label.setAttribute('fill', '#ccc');
+      label.setAttribute('font-size', '9');
+      label.setAttribute('font-family', 'sans-serif');
+      label.textContent = key;
+      svg.appendChild(label);
+
+      var bgRect = document.createElementNS(ns, 'rect');
+      bgRect.setAttribute('x', labelW);
+      bgRect.setAttribute('y', y + 4);
+      bgRect.setAttribute('width', barMaxW);
+      bgRect.setAttribute('height', 14);
+      bgRect.setAttribute('fill', 'rgba(255,255,255,0.1)');
+      bgRect.setAttribute('rx', 2);
+      svg.appendChild(bgRect);
+
+      var bar = document.createElementNS(ns, 'rect');
+      bar.setAttribute('x', labelW);
+      bar.setAttribute('y', y + 4);
+      bar.setAttribute('width', barW);
+      bar.setAttribute('height', 14);
+      bar.setAttribute('fill', colors[i % colors.length]);
+      bar.setAttribute('rx', 2);
+      svg.appendChild(bar);
+
+      var valText = document.createElementNS(ns, 'text');
+      valText.setAttribute('x', labelW + barMaxW + 4);
+      valText.setAttribute('y', y + 16);
+      valText.setAttribute('fill', '#eee');
+      valText.setAttribute('font-size', '9');
+      valText.setAttribute('font-family', 'sans-serif');
+      valText.textContent = val + '%';
+      svg.appendChild(valText);
+    });
+
+    return svg;
+  }
+
   function createInfoHotspotElement(hotspot) {
 
     // Create wrapper element to hold icon and tooltip.
@@ -328,6 +392,19 @@
     var text = document.createElement('div');
     text.classList.add('info-hotspot-text');
     text.innerHTML = hotspot.text;
+
+    // Append image if provided.
+    if (hotspot.image) {
+      var img = document.createElement('img');
+      img.src = hotspot.image;
+      img.classList.add('info-hotspot-media');
+      text.appendChild(img);
+    }
+
+    // Append fouling chart if provided.
+    if (hotspot.chartData) {
+      text.appendChild(createFoulingChart(hotspot.chartData));
+    }
 
     // Place header and text into wrapper element.
     wrapper.appendChild(header);

@@ -99,7 +99,13 @@ var APP_DATA = {
           "yaw": -0.34554232661350603,
           "pitch": 0.2861960666663528,
           "title": "Thruster Tunnels",
-          "text": "Minor traces of macrofouling"
+          "text": "Minor traces of macrofouling",
+          "image": "info/bow_thrusters_i.jpg",
+          "chartData": {
+            "Slime": 60,
+            "Soft-macrofouling": 30,
+            "Hard-macrofouling": 10
+          }
         }
       ]
     },
