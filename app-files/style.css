@@ -842,3 +842,34 @@ body.view-control-buttons .viewControlButton {
   display: block;
   margin-top: 10px;
 }
+
+.info-hotspot-description {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #bbb;
+  line-height: 1.5em;
+}
+
+.info-hotspot-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 10px;
+  color: #ccc;
+}
+
+.info-hotspot-table th {
+  background-color: rgba(255,255,255,0.15);
+  padding: 4px 5px;
+  text-align: left;
+  color: #eee;
+}
+
+.info-hotspot-table td {
+  padding: 3px 5px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.info-hotspot-table tr:nth-child(even) td {
+  background-color: rgba(255,255,255,0.05);
+}

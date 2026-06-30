@@ -348,6 +348,35 @@
     return svg;
   }
 
+  function createFoulingTable(tableData) {
+    var table = document.createElement('table');
+    table.classList.add('info-hotspot-table');
+
+    var thead = document.createElement('thead');
+    var headerRow = document.createElement('tr');
+    tableData.headers.forEach(function(h) {
+      var th = document.createElement('th');
+      th.textContent = h;
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    tableData.rows.forEach(function(row) {
+      var tr = document.createElement('tr');
+      row.forEach(function(cell) {
+        var td = document.createElement('td');
+        td.textContent = cell;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+
+    return table;
+  }
+
   function createInfoHotspotElement(hotspot) {
 
     // Create wrapper element to hold icon and tooltip.
@@ -393,6 +422,14 @@
     text.classList.add('info-hotspot-text');
     text.innerHTML = hotspot.text;
 
+    // Append description paragraph if provided.
+    if (hotspot.description) {
+      var desc = document.createElement('p');
+      desc.classList.add('info-hotspot-description');
+      desc.textContent = hotspot.description;
+      text.appendChild(desc);
+    }
+
     // Append image if provided.
     if (hotspot.image) {
       var img = document.createElement('img');
@@ -404,6 +441,11 @@
     // Append fouling chart if provided.
     if (hotspot.chartData) {
       text.appendChild(createFoulingChart(hotspot.chartData));
+    }
+
+    // Append fouling table if provided.
+    if (hotspot.tableData) {
+      text.appendChild(createFoulingTable(hotspot.tableData));
     }
 
     // Place header and text into wrapper element.

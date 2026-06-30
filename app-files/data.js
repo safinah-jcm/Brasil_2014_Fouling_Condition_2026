@@ -100,11 +100,21 @@ var APP_DATA = {
           "pitch": 0.2861960666663528,
           "title": "Thruster Tunnels",
           "text": "Minor traces of macrofouling",
+          "description": "Both thruster tunnels present light fouling conditions overall. Slime forms the dominant coverage across tunnel walls and internal surfaces, with soft macrofouling concentrated mainly around the openings and lower areas exposed to higher water flow. Hard macrofouling, primarily barnacles, is limited to isolated spots in sheltered recesses. The condition is consistent with the vessel's last dry-dock cycle and does not represent a significant drag or performance penalty at this stage.",
           "image": "info/bow_thrusters_i.jpg",
           "chartData": {
             "Slime": 60,
             "Soft-macrofouling": 30,
             "Hard-macrofouling": 10
+          },
+          "tableData": {
+            "headers": ["Zone", "Slime %", "Soft %", "Hard %"],
+            "rows": [
+              ["Port tunnel",      "65", "25", "10"],
+              ["Starboard tunnel", "55", "35", "10"],
+              ["Openings",         "70", "20", "10"],
+              ["Average",          "63", "27", "10"]
+            ]
           }
         }
       ]
