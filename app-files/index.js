@@ -288,9 +288,9 @@
     var ns = 'http://www.w3.org/2000/svg';
     var keys = Object.keys(chartData);
     var rowH = 26;
-    var labelW = 118;
-    var barMaxW = 100;
-    var svgW = 260;
+    var labelW = 140;
+    var barMaxW = 150;
+    var svgW = 360;
     var svgH = keys.length * rowH + 8;
     var colors = ['#4db6ac', '#ff8a65', '#ef5350'];
 
